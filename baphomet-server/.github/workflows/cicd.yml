@@ -2,8 +2,8 @@ name: Deploy Baphomet Server
 
 on:
   push:
-    branches:
-      - 'master'
+    paths:
+      - 'baphomet-server/**'
 
 jobs:
   build:

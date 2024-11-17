@@ -1,8 +1,8 @@
 name: Deploy Baphomet UI
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'baphomet-ui/**'
 
 jobs:
   build:
