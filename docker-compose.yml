@@ -1,0 +1,39 @@
+services:
+    backend:
+    image: collinlucke/baphomet-ui
+    networks:
+      - baphomet-server_default
+    restart: no
+    build:
+      context: ./baphomet-ui
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - SERVER_BASE_URL=${SERVER_BASE_URL}
+      - GIT_REGISTRY_TOKEN=${GIT_REGISTRY_TOKEN}
+
+networks:
+  baphomet-server_default:
+    external: true
+
+  frontend:
+    image: collinlucke/baphomet-server
+    restart: unless-stopped
+    build:
+      context: ./baphomet-server
+      dockerfile: Dockerfile
+    ports:
+      - '5050:5050'
+    environment:
+      - ATLAS_DB_PASSWORD=${ATLAS_DB_PASSWORD}
+      - ATLAS_DB_USERNAME=${ATLAS_DB_USERNAME}
+      - ATLAS_CLUSTER=${ATLAS_CLUSTER}
+      - ATLAS_DB=${ATLAS_DB}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - NODE_ENV=${NODE_ENV}
+
+

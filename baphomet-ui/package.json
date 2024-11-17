@@ -1,0 +1,54 @@
+{
+  "name": "baphomet-ui",
+  "private": true,
+  "version": "0.1.8",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "install:dev": "NODE_ENV=development pnpm install"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.11.8",
+    "@collinlucke/phantomartist": "latest",
+    "@emotion/babel-plugin": "^11.12.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@stylexjs/dev-runtime": "^0.7.5",
+    "@stylexjs/stylex": "^0.7.5",
+    "apollo-upload-client": "^18.0.1",
+    "dotenv": "^16.4.5",
+    "graphql": "^16.9.0",
+    "hugeicons-react": "^0.3.0",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "rollup-plugin-delete": "^2.1.0",
+    "vite-plugin-static-copy": "^1.0.6",
+    "vite-plugin-stylex": "^0.10.1"
+  },
+  "devDependencies": {
+    "@stylexjs/eslint-plugin": "^0.7.5",
+    "@types/node": "^22.8.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  },
+  "overrides": {
+    "vite-plugin-stylex": {
+      "@stylexjs/babel-plugin": "0.4.1"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  getMovie(id: ID!): Movie
+  getAllMovies(limit: Int, searchTerm: String): [Movie]
+  currentUser: User
+  checkAuth(token: String): CheckAuth
+}
+
+type Mutation {
+  addMovie(title: String!, releaseDate: String, rated: String, poster: String, fullplot: String): Movie
+  updateMovie(
+    id: ID!
+    title: String
+    releaseDate: String
+    rated: String
+    poster: String
+    fullplot: String
+  ): Movie
+  deleteMovie(id: ID!): Boolean,
+  signUp(email: String, password: String): AuthPayload,
+  login(email: String, password: String): AuthPayload,
+}
+
+type Movie {
+  id: ID
+  title: String
+  releaseDate: String
+  rated: String
+  poster: String
+  fullplot: String
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type CheckAuth {
+  isValid: Boolean
+}
