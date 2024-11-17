@@ -1,8 +1,8 @@
-name: Deploy Baphomet UI
+name: Deploy Frontend
 on:
   push:
     paths:
-      - 'baphomet-ui/**'
+      - 'frontend/**'
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
           docker buildx build --build-arg NODE_ENV=${{ secrets.NODE_ENV }} \
                         --build-arg SERVER_BASE_URL=${{ secrets.SERVER_BASE_URL }} \
                         --build-arg GIT_REGISTRY_TOKEN=${{ secrets.GIT_REGISTRY_TOKEN }} \
-                        -t collinlucke/baphomet-ui . --push
+                        -t collinlucke/frontend . --push
 
   deploy:
     needs: build
@@ -67,7 +67,7 @@ jobs:
         run: PowerShell -File scripts/runAsAdmin.ps1
 
       - name: Delete Old Container
-        run: docker rm -f baphomet-ui-container
+        run: docker rm -f frontend-container
 
       - name: Run Docker Container
-        run: docker run -d -p 80:80 -p 443:443 collinlucke/baphomet-ui
+        run: docker run -d -p 80:80 -p 443:443 collinlucke/frontend

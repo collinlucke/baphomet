@@ -1,9 +1,9 @@
-name: Deploy Baphomet Server
+name: Deploy Backend
 
 on:
   push:
     paths:
-      - 'baphomet-server/**'
+      - 'backend/**'
 
 jobs:
   build:
@@ -47,7 +47,7 @@ jobs:
         run: docker-compose -f docker-compose.yml pull
 
       - name: Delete Old Container
-        run: docker rm -f baphomet-server-container
+        run: docker rm -f backend-container
 
       - name: Run Docker Container
         run: docker-compose -f docker-compose.yml up -d

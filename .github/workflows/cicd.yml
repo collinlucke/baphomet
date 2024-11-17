@@ -1,0 +1,45 @@
+name: Master CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    name: frontend CI/CD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+        with:
+          path: frontend
+
+      - name: Run frontend CI/CD
+        run: |
+          cd frontend
+          if [ -f .github/workflows/cicd.yml ]; then
+            echo "Running frontend CI/CD..."
+            gh workflow run .github/workflows/cicd.yml
+          else
+            echo "No Frontend CI/CD workflow found."
+          fi
+
+  backend:
+    name: backend CI/CD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+        with:
+          path: backend
+
+      - name: Run Backend CI/CD
+        run: |
+          cd backend
+          if [ -f .github/workflows/cicd.yml ]; then
+            echo "Running Backend CI/CD..."
+            gh workflow run .github/workflows/cicd.yml
+          else
+            echo "No Backend CI/CD workflow found."
+          fi
